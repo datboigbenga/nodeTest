@@ -1,0 +1,490 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "nodeTest Api",
+    "description": "simple node app",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Register",
+        "operationId": "Register",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/RegisterUserRequest"
+                  },
+                  {
+                    "example": {
+                      "name": "Gbenga",
+                      "email": "eruolagbenga@yahoo.com",
+                      "password": "secret",
+                      "role": "seller"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "name": "Gbenga",
+                "email": "eruolagbenga@yahoo.com",
+                "password": "secret",
+                "role": "seller"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Login",
+        "operationId": "Login",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/LoginUserRequest"
+                  },
+                  {
+                    "example": {
+                      "email": "eruolagbenga@yahoo.com",
+                      "password": "secret"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "email": "eruolagbenga@yahoo.com",
+                "password": "secret"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/products": {
+      "post": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "createProduct",
+        "operationId": "createProduct",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/createProductRequest"
+                  },
+                  {
+                    "example": {
+                      "name": "clothe",
+                      "price": "500",
+                      "description": "versacee clothe"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "name": "clothe",
+                "price": "500",
+                "description": "versacee clothe"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "getAllProducts",
+        "operationId": "getAllProducts",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": []
+      }
+    },
+    "/user/products": {
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "getAllProductbySeller",
+        "operationId": "getAllProductbySeller",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/products/{id}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "schema": {
+            "type": "integer"
+          },
+          "required": true,
+          "description": "The product ID"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "getProduct",
+        "operationId": "getProduct",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": []
+      },
+      "patch": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "updateProduct",
+        "operationId": "updateProduct",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/updateProductRequest"
+                  },
+                  {
+                    "example": {
+                      "name": "clothe",
+                      "price": "500",
+                      "description": "versacee clothe"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "name": "clothe",
+                "price": "500",
+                "description": "versacee clothe"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Products"
+        ],
+        "summary": "deleteProduct",
+        "operationId": "deleteProduct",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/favourite": {
+      "post": {
+        "tags": [
+          "Favourites"
+        ],
+        "summary": "createFav",
+        "operationId": "createFav",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/createFavRequest"
+                  },
+                  {
+                    "example": {
+                      "product": "648333d74b45f21cf72d6fa7"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "product": "648333d74b45f21cf72d6fa7"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Favourites"
+        ],
+        "summary": "deleteFav",
+        "description": "",
+        "operationId": "deleteFav",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RegisterUserRequest": {
+        "title": "RegisterUserRequest",
+        "required": [
+          "name",
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "gbenga",
+          "email": "eruolagbenga@yahoo.com",
+          "password": "secret",
+          "role": "seller"
+        }
+      },
+      "LoginUserRequest": {
+        "title": "LoginUserRequest",
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "email": "eruolagbenga@yahoo.com",
+          "password": "secret"
+        }
+      },
+      "createProductRequest": {
+        "title": "createProductRequest",
+        "required": [
+          "name",
+          "price",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "clothe",
+          "price": "500",
+          "description": "versacee clothe"
+        }
+      },
+      "updateProductRequest": {
+        "title": "updateProductRequest",
+        "required": [
+          "name",
+          "price",
+          "description"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "clothe",
+          "price": "500",
+          "description": "versacee clothe"
+        }
+      },
+      "createFavRequest": {
+        "title": "createFavRequest",
+        "required": [
+          "product"
+        ],
+        "type": "object",
+        "properties": {
+          "product": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "product": "648333d74b45f21cf72d6fa7"
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Auth"
+    },
+    {
+      "name": "Products"
+    },
+    {
+      "name": "Favourites"
+    }
+  ]
+}
